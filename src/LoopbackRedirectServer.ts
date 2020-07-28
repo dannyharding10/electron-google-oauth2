@@ -1,4 +1,4 @@
-import * as http from 'http';
+const http = window.require('http');
 import * as url from 'url';
 
 export type LoopbackRedirectServerOptions = {
@@ -18,11 +18,13 @@ export type LoopbackRedirectServerOptions = {
 };
 
 export default class LoopbackRedirectServer {
+  // @ts-ignore
   private _server: http.Server;
   private _maybeRedirection: Promise<string>;
 
   constructor({ port, successRedirectURL, callbackPath }: LoopbackRedirectServerOptions) {
     this._maybeRedirection = new Promise((resolve, reject) => {
+      // @ts-ignore
       this._server = http.createServer((req, res) => {
         if (req.url && url.parse(req.url).pathname === callbackPath) {
           res.writeHead(302, {
@@ -38,6 +40,7 @@ export default class LoopbackRedirectServer {
           res.end();
         }
       });
+      // @ts-ignore
       this._server.on('error', e => reject(e));
       this._server.listen(port);
     });
