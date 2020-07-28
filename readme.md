@@ -1,3 +1,5 @@
+*This is the same package as `getstation/electron-google-oauth2` Except with usages of `require` changed to `window.require`
+
 # @getstation/electron-google-oauth2
 > Library that manages Google OAuth2 authentication for your [Electron](http://electron.atom.io) app.
 
